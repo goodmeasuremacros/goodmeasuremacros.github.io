@@ -4,161 +4,477 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Good Measure Macros Kitchen</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --cream: #f2eee5;
+      --warm-cream: #e7e1d4;
+      --deep-green: #2f4f3f;
+      --near-black: #17211c;
+      --copper: #c26938;
+      --soft-border: #d8d0c1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4efe6;
-      color: #2b2118;
+      background: var(--cream);
+      color: var(--near-black);
+      font-family: "Montserrat", Arial, sans-serif;
     }
 
     header {
-      padding: 28px 8%;
+      padding: 34px 8%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #d8cbb8;
+      border-bottom: 1px solid var(--soft-border);
+      background: var(--cream);
     }
 
     .brand {
-      font-size: 24px;
-      font-weight: bold;
-      letter-spacing: 2px;
+      font-family: "Cinzel", Georgia, serif;
+      color: var(--deep-green);
+      font-size: 28px;
+      letter-spacing: 5px;
+      line-height: 1.05;
     }
 
-    .tagline {
+    .sub-brand {
+      margin-top: 8px;
+      color: var(--copper);
       font-size: 13px;
-      letter-spacing: 1px;
-      color: #5d4b3b;
+      font-weight: 700;
+      letter-spacing: 8px;
+    }
+
+    .top-line {
+      color: var(--deep-green);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .hero {
-      padding: 90px 8%;
+      padding: 80px 8% 70px;
+      max-width: 1100px;
+    }
+
+    .eyebrow {
+      color: var(--copper);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, .serif {
+      font-family: "Cinzel", Georgia, serif;
+      font-weight: 400;
+      color: var(--deep-green);
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 1.05;
+      letter-spacing: 4px;
+      margin: 0 0 22px;
       max-width: 900px;
     }
 
-    .hero h1 {
-      font-size: 56px;
-      line-height: 1.05;
-      margin: 0 0 20px;
+    .hero p {
+      font-size: 21px;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 0 34px;
     }
 
-    .hero p {
-      font-size: 20px;
-      line-height: 1.6;
-      max-width: 680px;
+    .buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     .button {
       display: inline-block;
-      margin-top: 25px;
-      padding: 14px 24px;
-      background: #2f5d46;
-      color: white;
+      padding: 17px 34px;
+      border-radius: 4px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       text-decoration: none;
+    }
+
+    .button.primary {
+      background: var(--deep-green);
+      color: white;
+    }
+
+    .button.secondary {
+      border: 2px solid var(--deep-green);
+      color: var(--deep-green);
+      background: transparent;
+    }
+
+    .ingredient-strip {
+      margin: 35px 8% 0;
+      padding: 28px;
+      background: var(--warm-cream);
+      border: 1px solid var(--soft-border);
       border-radius: 6px;
-      font-weight: bold;
+      color: var(--deep-green);
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.6;
     }
 
     section {
-      padding: 55px 8%;
-      border-top: 1px solid #d8cbb8;
+      padding: 75px 8%;
+      border-top: 1px solid var(--soft-border);
     }
 
     h2 {
-      font-size: 30px;
-      margin-bottom: 18px;
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 1.08;
+      letter-spacing: 3px;
+      margin: 0 0 22px;
+      max-width: 760px;
     }
 
-    .grid {
+    .section-intro {
+      font-size: 19px;
+      line-height: 1.6;
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .rule {
+      width: 170px;
+      height: 4px;
+      background: var(--copper);
+      margin: 26px 0 38px;
+    }
+
+    .dark {
+      background: var(--deep-green);
+      color: var(--cream);
+    }
+
+    .dark h2,
+    .dark .serif {
+      color: var(--cream);
+    }
+
+    .dark .rule {
+      background: var(--copper);
+    }
+
+    .split-list {
+      max-width: 850px;
+      border-top: 1px solid rgba(255,255,255,0.35);
+    }
+
+    .split-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: 220px 1fr;
+      gap: 35px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      align-items: center;
+    }
+
+    .split-row strong {
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .split-row span {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 30px;
+      letter-spacing: 2px;
+    }
+
+    .macro-grid {
+      display: grid;
+      gap: 28px;
+      max-width: 900px;
+    }
+
+    .macro-card {
+      background: var(--warm-cream);
+      border: 1px solid var(--soft-border);
+      border-radius: 6px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .macro-card .box-name {
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 32px;
+      color: var(--deep-green);
+      letter-spacing: 2px;
+    }
+
+    .mini-rule {
+      width: 130px;
+      height: 4px;
+      background: var(--copper);
+      margin-top: 18px;
+    }
+
+    .macro-card strong {
+      color: var(--deep-green);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .macro-card p {
+      margin: 12px 0 0;
+      line-height: 1.5;
+    }
+
+    .principles {
+      display: grid;
+      gap: 0;
+      max-width: 900px;
+      border-top: 1px solid var(--soft-border);
+    }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 70px 230px 1fr;
       gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--soft-border);
+      align-items: start;
     }
 
-    .card {
-      background: #fffaf1;
-      padding: 24px;
-      border-radius: 10px;
-      border: 1px solid #dfd2bf;
+    .number {
+      color: var(--copper);
+      font-weight: 800;
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: #2f5d46;
+    .principle-title {
+      color: var(--deep-green);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .cta-bar {
+      margin-top: 45px;
+      background: var(--deep-green);
+      color: white;
+      padding: 26px;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .contact-box {
+      max-width: 760px;
+      background: var(--warm-cream);
+      border: 1px solid var(--soft-border);
+      padding: 32px;
+      border-radius: 6px;
     }
 
     footer {
-      padding: 35px 8%;
-      background: #2b2118;
-      color: #f4efe6;
+      background: var(--near-black);
+      color: var(--cream);
+      padding: 32px 8%;
       font-size: 14px;
+      border-top: 6px solid var(--copper);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+      }
+
+      .split-row,
+      .macro-card,
+      .principle {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .sub-brand {
+        letter-spacing: 5px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <div>
-      <div class="brand">GOOD MΣASURΣ</div>
-      <div class="tagline">MACROS KITCHEN</div>
+      <div class="brand">GOOD MΣASURE</div>
+      <div class="sub-brand">MACROS KITCHEN</div>
     </div>
-    <div class="tagline">Protein-focused meals</div>
+    <div class="top-line">High Protein. Precisely Portioned.</div>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Measured meals for modern city life.</h1>
+      <div class="eyebrow">High Protein. Precisely Portioned.</div>
+      <h1>Measured Protein. No Guesswork.</h1>
       <p>
-        Good Measure Macros Kitchen is a protein-focused grab-and-go food concept built around simple, consistent and transparent meals.
+        High-protein meals built around precise portions, consistent cooking and real macro targets.
       </p>
-      <a class="button" href="#contact">Commercial Enquiries</a>
+
+      <div class="buttons">
+        <a class="button primary" href="#menu">View Menu</a>
+        <a class="button secondary" href="#how">How It Works</a>
+      </div>
     </section>
 
-    <section>
-      <h2>The Concept</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Protein-led</h3>
-          <p>Meals designed around clear protein portions and everyday nutritional discipline.</p>
+    <div class="ingredient-strip">
+      Oven baked chicken breast &nbsp; • &nbsp; Steamed broccoli &nbsp; • &nbsp; Rice &nbsp; • &nbsp; Greek yogurt-based sauces
+    </div>
+
+    <section class="dark">
+      <div class="eyebrow">40g / 60g / 80g</div>
+      <h2>Protein Boxes.</h2>
+      <div class="rule"></div>
+
+      <div class="split-list">
+        <div class="split-row">
+          <strong>Weighed.</strong>
+          <span>Not Estimated.</span>
         </div>
-        <div class="card">
-          <h3>Simple Operations</h3>
-          <p>A focused menu model designed for speed, consistency and low waste.</p>
+        <div class="split-row">
+          <strong>Protein From</strong>
+          <span>Chicken.</span>
         </div>
-        <div class="card">
-          <h3>Urban Grab & Go</h3>
-          <p>Built for busy London locations with strong lunchtime and commuter demand.</p>
+        <div class="split-row">
+          <strong>Precision</strong>
+          <span>Food.</span>
+        </div>
+        <div class="split-row">
+          <strong>Built For</strong>
+          <span>Consistency.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="eyebrow">Macro Menu</div>
+      <h2>Know Your Macros.</h2>
+      <p class="section-intro">
+        Three clear protein targets built around weighed chicken breast.
+      </p>
+
+      <div class="macro-grid">
+        <div class="macro-card">
+          <div>
+            <div class="box-name">40 Box</div>
+            <div class="mini-rule"></div>
+          </div>
+          <div>
+            <strong>≥95 g chicken</strong>
+            <p>409 kcal &nbsp; / &nbsp; Carbs 49.9 g &nbsp; / &nbsp; Protein ≥ 40 g &nbsp; / &nbsp; Fat 4.4 g &nbsp; / &nbsp; Fibre 3.2 g</p>
+          </div>
+        </div>
+
+        <div class="macro-card">
+          <div>
+            <div class="box-name">60 Box</div>
+            <div class="mini-rule"></div>
+          </div>
+          <div>
+            <strong>≥156 g chicken</strong>
+            <p>552 kcal &nbsp; / &nbsp; Carbs 59.0 g &nbsp; / &nbsp; Protein ≥ 60 g &nbsp; / &nbsp; Fat 6.7 g &nbsp; / &nbsp; Fibre 3.7 g</p>
+          </div>
+        </div>
+
+        <div class="macro-card">
+          <div>
+            <div class="box-name">80 Box</div>
+            <div class="mini-rule"></div>
+          </div>
+          <div>
+            <strong>≥218 g chicken</strong>
+            <p>684 kcal &nbsp; / &nbsp; Carbs 65.4 g &nbsp; / &nbsp; Protein ≥ 80 g &nbsp; / &nbsp; Fat 9.0 g &nbsp; / &nbsp; Fibre 4.1 g</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-bar">Transparent targets. No inflated claims.</div>
+    </section>
+
+    <section id="how">
+      <div class="eyebrow">Our Principles</div>
+      <h2>Food Built On Measure.</h2>
+      <div class="rule"></div>
+
+      <div class="principles">
+        <div class="principle">
+          <div class="number">01</div>
+          <div class="principle-title">Weighed Portions</div>
+          <div>Protein targets built from measured chicken, not guesswork.</div>
+        </div>
+
+        <div class="principle">
+          <div class="number">02</div>
+          <div class="principle-title">Nutritional Integrity</div>
+          <div>Clear values, controlled portions, and a defined purpose.</div>
+        </div>
+
+        <div class="principle">
+          <div class="number">03</div>
+          <div class="principle-title">Transparent</div>
+          <div>Macros presented plainly so customers know what they are buying.</div>
+        </div>
+
+        <div class="principle">
+          <div class="number">04</div>
+          <div class="principle-title">Consistent</div>
+          <div>The same portion logic, every box, every visit.</div>
+        </div>
+
+        <div class="principle">
+          <div class="number">05</div>
+          <div class="principle-title">Efficient</div>
+          <div>Simple choices, fast service, tighter operations.</div>
+        </div>
+
+        <div class="principle">
+          <div class="number">06</div>
+          <div class="principle-title">Simple</div>
+          <div>No inflated menu. No filler-led claims.</div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Menu Direction</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Chicken Protein Bowl</h3>
-          <p>Chicken breast, rice or alternative grain, vegetables and yoghurt-based sauce.</p>
-        </div>
-        <div class="card">
-          <h3>Measured Portions</h3>
-          <p>Clear portion sizes with a focus on consistency and repeat customer trust.</p>
-        </div>
-        <div class="card">
-          <h3>Halal Friendly</h3>
-          <p>Designed around halal ingredients and broad appeal across London’s customer base.</p>
-        </div>
-      </div>
-    </section>
+      <div class="eyebrow">Commercial Enquiries</div>
+      <h2>Built For London Grab & Go.</h2>
+      <p class="section-intro">
+        Good Measure Macros Kitchen is exploring suitable London retail and grab-and-go locations.
+      </p>
 
-    <section id="contact">
-      <h2>Commercial Enquiries</h2>
-      <p>
-        Good Measure Macros Kitchen is currently exploring suitable London retail and grab-and-go locations.
-      </p>
-      <p>
-        For landlord, agent and commercial enquiries, please contact the founding team directly.
-      </p>
+      <div class="contact-box">
+        <p><strong>For landlord, agent and commercial enquiries:</strong></p>
+        <p>Please contact the founding team directly.</p>
+      </div>
     </section>
   </main>
 
